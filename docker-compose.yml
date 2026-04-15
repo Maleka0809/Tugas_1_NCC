@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    container_name: ncc-backend
+    ports:
+      - "${PORT_BACKEND:-8000}:8000"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: ncc-frontend
+    ports:
+      - "${PORT_FRONTEND:-3000}:3000"
+    restart: unless-stopped
+    depends_on:
+      - backend
